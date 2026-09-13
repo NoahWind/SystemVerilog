@@ -1,0 +1,8 @@
+# Säkerhetskopior
+*.bak
+
+# QuestaSim / ModelSim filer och mappar
+*.cr.mti
+*.mpf
+*.wlf
+work/
