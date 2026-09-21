@@ -6,9 +6,9 @@ module carry_logic_1 (
 );
     logic ng1, w1, w2;
 
-    nand2 n_ng1 (.a(g1), .b(g1), .y(ng1));
-    nand2 n_w1  (.a(p1), .b(g0), .y(w1));
-    nand3 n_w2  (.a(p1), .b(p0), .c(carry_in), .y(w2));
+    nand2 n_ng1(.a(g1), .b(g1), .y(ng1));
+    nand2 n_w1 (.a(p1), .b(g0), .y(w1));
+    nand3 n_w2 (.a(p1), .b(p0), .c(carry_in), .y(w2));
 
     nand3 n_final (.a(ng1), .b(w1), .c(w2), .y(carry_out));
 endmodule
@@ -22,9 +22,9 @@ module carry_logic_2 (
     logic ng2, w1, w2, w3;
 
     nand2 n_ng2 (.a(g2), .b(g2), .y(ng2));
-    nand2 n_w1  (.a(p2), .b(g1), .y(w1));
-    nand3 n_w2  (.a(p2), .b(p1), .c(g0), .y(w2));
-    nand4 n_w3  (.a(p2), .b(p1), .c(p0), .d(carry_in), .y(w3));
+    nand2 n_w1 (.a(p2), .b(g1), .y(w1));
+    nand3 n_w2 (.a(p2), .b(p1), .c(g0), .y(w2));
+    nand4 n_w3 (.a(p2), .b(p1), .c(p0), .d(carry_in), .y(w3));
 
     nand4 n_final (.a(ng2), .b(w1), .c(w2), .d(w3), .y(carry_out));
 endmodule
@@ -37,10 +37,10 @@ module carry_logic_3 (
 );
     logic ng3, w1, w2, w3, w4;
 
-    nand2 n_ng3 (.a(g3), .b(g3), .y(ng3));
-    nand2 n_w1  (.a(p3), .b(g2), .y(w1));
-    nand3 n_w2  (.a(p3), .b(p2), .c(g1), .y(w2));
-    nand4 n_w3  (.a(p3), .b(p2), .c(p1), .d(g0), .y(w3));
+    nand2 n_ng3(.a(g3), .b(g3), .y(ng3));
+    nand2 n_w1 (.a(p3), .b(g2), .y(w1));
+    nand3 n_w2 (.a(p3), .b(p2), .c(g1), .y(w2));
+    nand4 n_w3 (.a(p3), .b(p2), .c(p1), .d(g0), .y(w3));
     nand5_delay n_w4 (.a(p3), .b(p2), .c(p1), .d(p0), .e(carry_in), .y(w4));
 
     nand5_delay n_final (.a(ng3), .b(w1), .c(w2), .d(w3), .e(w4), .y(carry_out));
@@ -54,10 +54,10 @@ module carry_logic_4 (
 );
     logic ng4, w1, w2, w3, w4, w5;
 
-    nand2 n_ng4 (.a(g4), .b(g4), .y(ng4));
-    nand2 n_w1  (.a(p4), .b(g3), .y(w1));
-    nand3 n_w2  (.a(p4), .b(p3), .c(g2), .y(w2));
-    nand4 n_w3  (.a(p4), .b(p3), .c(p2), .d(g1), .y(w3));
+    nand2 n_ng4(.a(g4), .b(g4), .y(ng4));
+    nand2 n_w1 (.a(p4), .b(g3), .y(w1));
+    nand3 n_w2 (.a(p4), .b(p3), .c(g2), .y(w2));
+    nand4 n_w3 (.a(p4), .b(p3), .c(p2), .d(g1), .y(w3));
     nand5_delay n_w4 (.a(p4), .b(p3), .c(p2), .d(p1), .e(g0), .y(w4));
     nand6_delay n_w5 (.a(p4), .b(p3), .c(p2), .d(p1), .e(p0), .f(carry_in), .y(w5));
 
@@ -73,9 +73,9 @@ module carry_logic_5 (
     logic ng5, w1, w2, w3, w4, w5, w6;
 
     nand2 n_ng5 (.a(g5), .b(g5), .y(ng5));
-    nand2 n_w1  (.a(p5), .b(g4), .y(w1));
-    nand3 n_w2  (.a(p5), .b(p4), .c(g3), .y(w2));
-    nand4 n_w3  (.a(p5), .b(p4), .c(p3), .d(g2), .y(w3));
+    nand2 n_w1 (.a(p5), .b(g4), .y(w1));
+    nand3 n_w2 (.a(p5), .b(p4), .c(g3), .y(w2));
+    nand4 n_w3 (.a(p5), .b(p4), .c(p3), .d(g2), .y(w3));
     nand5_delay n_w4 (.a(p5), .b(p4), .c(p3), .d(p2), .e(g1), .y(w4));
     nand6_delay n_w5 (.a(p5), .b(p4), .c(p3), .d(p2), .e(p1), .f(g0), .y(w5));
     nand7_delay n_w6 (.a(p5), .b(p4), .c(p3), .d(p2), .e(p1), .f(p0), .g(carry_in), .y(w6));
@@ -92,15 +92,15 @@ module carry_logic_6 (
     logic ng6, w1, w2, w3, w4, w5, w6, w7;
 
     nand2 n_ng6 (.a(g6), .b(g6), .y(ng6));
-    nand2 n_w1  (.a(p6), .b(g5), .y(w1));
-    nand3 n_w2  (.a(p6), .b(p5), .c(g4), .y(w2));
-    nand4 n_w3  (.a(p6), .b(p5), .c(p4), .d(g3), .y(w3));
+    nand2 n_w1 (.a(p6), .b(g5), .y(w1));
+    nand3 n_w2 (.a(p6), .b(p5), .c(g4), .y(w2));
+    nand4 n_w3 (.a(p6), .b(p5), .c(p4), .d(g3), .y(w3));
     nand5_delay n_w4 (.a(p6), .b(p5), .c(p4), .d(p3), .e(g2), .y(w4));
     nand6_delay n_w5 (.a(p6), .b(p5), .c(p4), .d(p3), .e(p2), .f(g1), .y(w5));
     nand7_delay n_w6 (.a(p6), .b(p5), .c(p4), .d(p3), .e(p2), .f(p1), .g(g0), .y(w6));
     nand8_delay n_w7 (.a(p6), .b(p5), .c(p4), .d(p3), .e(p2), .f(p1), .g(p0), .h(carry_in), .y(w7));
 
-    nand8_delay n_final (.a(ng6), .b(w1), .c(w2), .d(w3), .e(w4), .f(w5), .g(w6), .h(w7), .y(carry_out));
+    nand8_delay n_final(.a(ng6), .b(w1), .c(w2), .d(w3), .e(w4), .f(w5), .g(w6), .h(w7), .y(carry_out));
 endmodule
 
 module carry_logic_7 (
@@ -112,12 +112,12 @@ module carry_logic_7 (
     logic ng7, w1, w2, w3, w4, w5, w6, w7, w8;
 
     nand2 n_ng7 (.a(g7), .b(g7), .y(ng7));
-    nand2 n_w1  (.a(p7), .b(g6), .y(w1));
-    nand3 n_w2  (.a(p7), .b(p6), .c(g5), .y(w2));
-    nand4 n_w3  (.a(p7), .b(p6), .c(p5), .d(g4), .y(w3));
+    nand2 n_w1 (.a(p7), .b(g6), .y(w1));
+    nand3 n_w2(.a(p7), .b(p6), .c(g5), .y(w2));
+    nand4 n_w3 (.a(p7), .b(p6), .c(p5), .d(g4), .y(w3));
     nand5_delay n_w4 (.a(p7), .b(p6), .c(p5), .d(p4), .e(g3), .y(w4));
     nand6_delay n_w5 (.a(p7), .b(p6), .c(p5), .d(p4), .e(p3), .f(g2), .y(w5));
-    nand7_delay n_w6 (.a(p7), .b(p6), .c(p5), .d(p4), .e(p3), .f(p2), .g(g1), .y(w6));
+    nand7_delay n_w6 (.a(p7), .b(p6), .c(p5), .d(p4),.e(p3), .f(p2), .g(g1), .y(w6));
     nand8_delay n_w7 (.a(p7), .b(p6), .c(p5), .d(p4), .e(p3), .f(p2), .g(p1), .h(g0), .y(w7));
     nand9_delay n_w8 (.a(p7), .b(p6), .c(p5), .d(p4), .e(p3), .f(p2), .g(p1), .h(p0), .i(carry_in), .y(w8));
 

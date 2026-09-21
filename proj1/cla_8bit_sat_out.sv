@@ -29,17 +29,17 @@ module cla_8bit_sat_out (
                 mux2 mux_ovf (
                     .d0(sum_full[i]),
                     .d1(1'b0),
-                    .sel(ovf),
+	          .sel(ovf),
                     .y(mux1_out[i])
                 );
 
                 mux2 mux_uvf (
                     .d0(mux1_out[i]),
                     .d1(1'b1),
-                    .sel(uvf),
+                   .sel(uvf),
                     .y(sum[i])
                 );
-            end else begin : lsb_clamp
+            end else begin :lsb_clamp
                 mux2 mux_ovf (
                     .d0(sum_full[i]),
                     .d1(1'b1),

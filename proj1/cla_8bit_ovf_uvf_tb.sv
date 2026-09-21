@@ -2,7 +2,7 @@
 module cla_8bit_ovf_uvf_tb;
     logic [7:0] a;
     logic [7:0] b;
-    logic [8:0] sum;
+    logic [7:0] sum;
     logic ovf;
     logic uvf;
 
@@ -15,11 +15,15 @@ module cla_8bit_ovf_uvf_tb;
     );
 
     initial begin
-        a = 8'h00; b = 8'h00; #100;
-        a = 8'h7F; b = 8'h01; #100;
-        a = 8'h7F; b = 8'h7F; #100;
-        a = 8'h80; b = 8'h80; #100;
-        a = 8'h80; b = 8'h01; #100;
+        for (int i = 0; i <= 8'hff; i++) begin
+            for (int j = 0; j <= 8'hff; j++) begin
+		a = i[7:0]; 
+		b = j[7:0]; 
+                #100;
+		assert ( sum == (j+i)) else $fatal(1, "BAD %d %d", i,j);
+            end
+        end
+        
         $finish;
     end
 endmodule
