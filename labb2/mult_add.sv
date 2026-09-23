@@ -17,7 +17,7 @@ module mult_add (
     mult_mnbit #(.M(4), .N(4)) m3 (.a(a6), .b(a7), .product(p3));
 
     logic [7:0] sum_s1_0, sum_s1_1;
-    logic       cout_s1_0, cout_s1_1;
+    logic cout_s1_0, cout_s1_1;
 
     rca #(.N(8)) add_s1_0 (.a(p0), .b(p1), .cin(1'b0), .sum(sum_s1_0), .cout(cout_s1_0));
     rca #(.N(8)) add_s1_1 (.a(p2), .b(p3), .cin(1'b0), .sum(sum_s1_1), .cout(cout_s1_1));
@@ -27,7 +27,7 @@ module mult_add (
     assign term1 = {cout_s1_1, sum_s1_1};
 
     logic [8:0] sum_s2;
-    logic       cout_s2;
+    logic cout_s2;
 
     rca #(.N(9)) add_s2 (.a(term0), .b(term1), .cin(1'b0), .sum(sum_s2), .cout(cout_s2));
 

@@ -32,7 +32,7 @@ module tb_shifter_rotator;
             end
         end
 
-        $display("ALLA TESTFALL FÖR SHIFTER_ROTATOR GODKÄNDA!");
+        $display("ALLA TESTFALL FÖR SHIFTER_ROTATOR Klar!");
         $finish;
     end
 

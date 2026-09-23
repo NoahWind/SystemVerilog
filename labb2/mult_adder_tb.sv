@@ -20,23 +20,20 @@ module tb_mult_add;
     endtask
 
     initial begin
-        // 1. Hörnhall / Gränsvärden (Corner cases)
         a0=0;  a1=0;  a2=0;  a3=0;  a4=0;  a5=0;  a6=0;  a7=0;  check_result();
         a0=15; a1=15; a2=15; a3=15; a4=15; a5=15; a6=15; a7=15; check_result();
         a0=15; a1=0;  a2=15; a3=0;  a4=15; a5=0;  a6=15; a7=0;  check_result();
 
-        // 2. Stega igenom alla 256 kombinationer för varje enskilt par (övriga = 0)
         a0=0; a1=0; a2=0; a3=0; a4=0; a5=0; a6=0; a7=0;
         for (int i = 0; i < 16; i++) begin
             for (int j = 0; j < 16; j++) begin
-                a0 = i; a1 = j; check_result(); // Testar m0
-                a2 = i; a3 = j; check_result(); // Testar m1
+                a0 = i; a1 = j; check_result(); 
+                a2 = i; a3 = j; check_result();
                 a4 = i; a5 = j; check_result(); // Testar m2
                 a6 = i; a7 = j; check_result(); // Testar m3
             end
         end
 
-        // 3. Slumpmässigt urval av 10 000 kombinationer för hela trädet
         for (int i = 0; i < 10000; i++) begin
             a0 = $urandom_range(0, 15);
             a1 = $urandom_range(0, 15);
@@ -49,7 +46,7 @@ module tb_mult_add;
             check_result();
         end
 
-        $display("EFFEKTIV TESTBÄNK GODKÄND (Gränsvärden + Parvis + 10k Slumpmässiga tester)!");
+        $display("EFFEKTIV TESTBï¿½NK GODKï¿½ND (Grï¿½nsvï¿½rden + Parvis + 10k Slumpmï¿½ssiga tester)!");
         $finish;
     end
 
