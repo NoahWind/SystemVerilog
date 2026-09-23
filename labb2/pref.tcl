@@ -22,8 +22,8 @@ set PrefDragDrop(Project) {{Verilog {Add to Project} {}} {SystemVerilog {Add to 
 set PrefDragDrop(Transcript) {{Verilog Open {}} {SystemVerilog Open {}} {VHDL Open {}} {PSL Open {}} {Text Open {}} {SystemC Open {}} {TCL Open {}} {Macro Open {}} {VCD Open {}} {SDF Open {}} {XML Open {}} {Logfile Open {}} {UCDB Open {}} {TDB Open {}} {UPF Open {}} {PCF Open {}} {Project Open {}} {VRM Open {}} {DebugDatabase Open {}} {DebugArchive Open {}}}
 set PrefDragDrop(Wave) {{Verilog Open {}} {SystemVerilog Open {}} {VHDL Open {}} {PSL Open {}} {Text Open {}} {SystemC Open {}} {TCL Open {}} {Macro Open {}} {VCD Open {}} {SDF Open {}} {XML Open {}} {Logfile Open {}} {UCDB Open {}} {TDB Open {}} {UPF Open {}} {PCF Open {}} {Project Open {}} {VRM Open {}} {DebugDatabase Open {}} {DebugArchive Open {}}}
 set PrefMain(compresslog) 0
-set PrefMain(editor) built-in
-set PrefSource(altEditor) built-in
-set PrefSource(editor) built-in
+set PrefMain(editor) notepad
+set PrefSource(altEditor) notepad
+set PrefSource(editor) notepad
 set PrefWave(displaycommas) 0
 set PrefWave(displayfreq) 0
