@@ -1,4 +1,14 @@
 
+
+module mux21 (
+    input  logic d0,
+    input  logic d1,
+    input  logic s,
+    output logic y
+);
+    assign y = (s == 1'b0) ? d0 : d1;
+endmodule
+
 module mux41 (
     input  logic d0,
     input  logic d1,
@@ -7,9 +17,29 @@ module mux41 (
     input  logic [1:0] s,
     output logic y
 );
-    assign y = (s == 2'b00) ? d0 :
-               (s == 2'b01) ? d1 :
-               (s == 2'b10) ? d2 : d3;
+    logic y0, y1;
+
+    mux21 m0 (
+        .d0(d0),
+        .d1(d1),
+        .s(s[0]),
+        .y(y0)
+    );
+
+    mux21 m1 (
+        .d0(d2),
+        .d1(d3),
+        .s(s[0]),
+        .y(y1)
+    );
+
+    mux21 m2 (
+        .d0(y0),
+        .d1(y1),
+        .s(s[1]),
+        .y(y)
+    );
+
 endmodule
 
 module shifter_rotator (
@@ -18,7 +48,7 @@ module shifter_rotator (
     output logic [3:0] y
 );
 
-    mux41 m0 ( // either value to left or right or 1 or 0
+    mux41 m0 ( // either value to left or right or 0
         .d0(1'b0),
         .d1(x[1]),
         .d2(x[3]),
@@ -45,7 +75,7 @@ module shifter_rotator (
         .y(y[2])
     );
 
-    mux41 m3 ( // either value to left or right or 1 or 0
+    mux41_using_mux21 m3 ( // either value to left or right or 0
         .d0(x[2]),
         .d1(1'b0),
         .d2(x[2]),

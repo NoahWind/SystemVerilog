@@ -46,6 +46,7 @@ module mult_mnbit #(
     endgenerate
 
     assign product[M+N-2 : M] = acc_sum[M-1][N-1:1];
+    
     assign product[M+N-1] = acc_cout[M-1];
 
 endmodule

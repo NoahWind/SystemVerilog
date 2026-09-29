@@ -19,8 +19,8 @@ module tb_mult_mnbit_signed;
             for (int j = -8; j <= 7; j++) begin
                 a = i[M-1:0];
                 b = j[N-1:0];
-                #10;
                 expected_product = a * b;
+                #10;
                 assert (product == expected_product)
                     else $fatal(1, "FEL! a=%d, b=%d, forvantat=%d, fick=%d", a, b, expected_product, product);
             end
