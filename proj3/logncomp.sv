@@ -1,11 +1,11 @@
 module comp_cell_1bit (
     input  logic a,
     input  logic b,
-    output logic g, // Greater (a > b)
-    output logic e, // Equal   (a == b)
-    output logic l  // Less    (a < b)
-);
-    assign g = a & ~b;
+    output logic g, // Greater
+    output logic e, // Equal
+    output logic l  // Less
+);  assign g = a & ~b;
+
     assign e = ~(a ^ b);
     assign l = ~a & b;
 endmodule
@@ -23,10 +23,10 @@ endmodule
 module comparator_unit (
     input  logic [7:0] x,
     input  logic [7:0] y,
-    input  logic [1:0] m, // 00 GT, 01 LT, 10 EQ, 11 NEQ
+    input  logic [1:0] m,
     output logic [15:0] z
 );
-    // Nivå 0: 8 st 1-bitars celler
+
     logic [7:0] g0, e0, l0;
     genvar i;
     generate
@@ -46,9 +46,11 @@ module comparator_unit (
     generate
         for (j = 0; j < 4; j++) begin : gen_level1
             comp_merge_node m1 (
-                .g_h(g0[2*j+1]), .e_h(e0[2*j+1]), .l_h(l0[2*j+1]),
-                .g_l(g0[2*j]),   .e_l(e0[2*j]),   .l_l(l0[2*j]),
-                .g_out(g1[j]),   .e_out(e1[j]),   .l_out(l1[j])
+                .g_h(g0[2*j+1]), 
+                .e_h(e0[2*j+1]), .l_h(l0[2*j+1]),
+                .g_l(g0[2*j]),
+                .e_l(e0[2*j]), .l_l(l0[2*j]),
+                .g_out(g1[j]), .e_out(e1[j]),   .l_out(l1[j])
             );
         end
     endgenerate
@@ -58,8 +60,10 @@ module comparator_unit (
     generate
         for (k = 0; k < 2; k++) begin : gen_level2
             comp_merge_node m2 (
-                .g_h(g1[2*k+1]), .e_h(e1[2*k+1]), .l_h(l1[2*k+1]),
-                .g_l(g1[2*k]),   .e_l(e1[2*k]),   .l_l(l1[2*k]),
+                .g_h(g1[2*k+1]),
+                 .e_h(e1[2*k+1]), .l_h(l1[2*k+1]),
+                .g_l(g1[2*k]),   .e_l(e1[2*k]),   
+                .l_l(l1[2*k]),
                 .g_out(g2[k]),   .e_out(e2[k]),   .l_out(l2[k])
             );
         end
@@ -74,9 +78,9 @@ module comparator_unit (
 
     logic result;
     mux4to1 #(.WIDTH(1)) comp_mux (
-        .in0(is_gt),  // m = 00 GREATER THAN
-        .in1(is_lt),  // m = 01 LESS THAN
-        .in2(is_eq),  // m = 10 EQUAL
+        .in0(is_gt),  
+        .in1(is_lt),
+        .in2(is_eq),
         .in3(~is_eq), // m = 11 NOT EQUAL
         .sel(m),
         .out(result)

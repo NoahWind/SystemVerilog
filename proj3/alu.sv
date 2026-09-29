@@ -17,7 +17,6 @@ module alu (
         .m(m),
         .z(z_arith)
     );
-
     shifter_rotator_unit u_shift (
         .x(x),
         .y(y),

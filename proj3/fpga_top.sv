@@ -1,6 +1,6 @@
-module fpga_top (
-    input  logic [11:0] SW,   // SW[3:0]=X, SW[7:4]=Y, SW[9:8]=M, SW[11:10]=S
-    output logic [15:0] LEDR  // LEDR[3:0]=X, LEDR[7:4]=Y, LEDR[15:8]=Z
+module fpga_top ( // Test kode for FPGA, use physical inputs/outputs
+    input  logic [11:0] SW,
+    output logic [15:0] LEDR
 );
 
     logic [3:0] x;

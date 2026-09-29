@@ -1,7 +1,7 @@
 module logic_unit (
-    input  logic [7:0]  x,
-    input  logic [7:0]  y,
-    input  logic [1:0]  m,    // 00 AND, 01 OR, 10 NOT, 11 XOR
+    input  logic [7:0] x,
+    input  logic [7:0] y,
+    input  logic [1:0] m, // 00 AND, 01 OR, 10 NOT, 11 XOR
     output logic [15:0] z
 );
 
@@ -12,15 +12,15 @@ module logic_unit (
     logic [7:0] mux_out_8bit;
 
     assign and_res = x & y;
-    assign or_res  = x | y;
+    assign or_res = x | y;
     assign not_res = ~x;
     assign xor_res = x ^ y;
 
     mux4to1 #(.WIDTH(8)) logic_mux (
-        .in0(and_res),   // m = 00 AND
-        .in1(or_res),    //m = 01 OR
-        .in2(not_res),   // m = 10 NOT
-        .in3(xor_res),   // m = 11 XOR
+        .in0(and_res),
+        .in1(or_res),
+        .in2(not_res),
+        .in3(xor_res),
         .sel(m), // Styrsignal M
         .out(mux_out_8bit)
     );
