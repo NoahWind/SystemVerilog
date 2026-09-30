@@ -2,7 +2,6 @@
 
 module tb_alu;
 
-    // Testbench-signaler
     logic [7:0]  x;
     logic [7:0]  y;
     logic [1:0]  m;
@@ -14,7 +13,7 @@ module tb_alu;
 
     alu dut (.x(x),.y(y),.m(m),.s(s),.z(z));
 
-    function automatic logic [15:0] get_expected( // tar fram faktiska
+    function automatic logic [15:0] get_expected(
         input logic [7:0] in_x,
         input logic [7:0] in_y,
         input logic [1:0] in_s,
@@ -26,19 +25,19 @@ module tb_alu;
         case (in_s)
             2'b00: begin
                 case (in_m)
-                    2'b00: return $signed(in_x) + $signed(in_y);// ADD
-                    2'b01: return $signed(in_x) - $signed(in_y);// SUB
+                    2'b00: return $signed(in_x) + $signed(in_y);
+                    2'b01: return $signed(in_x) - $signed(in_y);
                     2'b10: return $signed(in_x) * $signed(in_y);// MULTIPLY
-                    2'b11: return 16'h0000;// UNUSED
+                    2'b11: return 16'h0000;
                 endcase
             end
 
             2'b01: begin
                 case (in_m)
-                    2'b00: return {8'b0, (in_x >> shift_amt) | (in_x << (8 - shift_amt))}; // ROTATE RIGHT
-                    2'b01: return {8'b0, (in_x << shift_amt) | (in_x >> (8 - shift_amt))}; // ROTATE LEFT
-                    2'b10: return {8'b0, in_x >> shift_amt}; // SHIFT RIGHT
-                    2'b11: return {8'b0, in_x << shift_amt}; // SHIFT LEFT
+                    2'b00: return {8'b0, (in_x >> shift_amt) | (in_x << (8 - shift_amt))};
+                    2'b01: return {8'b0, (in_x << shift_amt) | (in_x >> (8 - shift_amt))};
+                    2'b10: return {8'b0, in_x >> shift_amt};
+                    2'b11: return {8'b0, in_x << shift_amt};
                 endcase
             end
 
@@ -48,17 +47,17 @@ module tb_alu;
                     2'b00: return {15'b0, (in_x > in_y)};
                     2'b01: return {15'b0, (in_x < in_y)};
                     2'b10: return {15'b0, (in_x == in_y)};
-                    2'b11: return {15'b0, (in_x != in_y)}; // NOT EQUAL
+                    2'b11: return {15'b0, (in_x != in_y)};
                 endcase
             end
 
             // 4. LOGIC (S = 11)
             2'b11: begin
                 case (in_m)
-                    2'b00: return {8'b0, in_x & in_y}; // AND
-                    2'b01: return {8'b0, in_x | in_y}; // OR
-                    2'b10: return {8'b0, ~in_x}; // NOT
-                    2'b11: return {8'b0, in_x ^ in_y}; // XOR
+                    2'b00: return {8'b0, in_x & in_y};
+                    2'b01: return {8'b0, in_x | in_y}; 
+                    2'b10: return {8'b0, ~in_x};
+                    2'b11: return {8'b0, in_x ^ in_y};
                 endcase
             end
         endcase

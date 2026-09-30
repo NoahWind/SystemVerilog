@@ -38,11 +38,11 @@ module alu (
     );
 
     mux4to1 #(.WIDTH(16)) top_alu_mux (
-        .in0(z_arith),// s = 00 Arithmetic
-        .in1(z_shift), // s = 01 Shift/Rotate
-        .in2(z_comp), // s = 10 Compare
-        .in3(z_logic), // s = 11 Logic
-        .sel(s), // Styrsignal S
+        .in0(z_arith),
+        .in1(z_shift),
+        .in2(z_comp),
+        .in3(z_logic),
+        .sel(s),
         .out(z)
     );
 
