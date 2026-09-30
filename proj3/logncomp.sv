@@ -11,7 +11,7 @@ module comp_cell_1bit (
 endmodule
 
 module comp_merge_node (
-    input  logic g_h, e_h, l_h, // Högre signifikans
+    input logic g_h, e_h, l_h, // Högre signifikans
     input  logic g_l, e_l, l_l, // Lägre signifikans
     output logic g_out, e_out, l_out
 );
@@ -46,11 +46,9 @@ module comparator_unit (
     generate
         for (j = 0; j < 4; j++) begin : gen_level1
             comp_merge_node m1 (
-                .g_h(g0[2*j+1]), 
-                .e_h(e0[2*j+1]), .l_h(l0[2*j+1]),
-                .g_l(g0[2*j]),
-                .e_l(e0[2*j]), .l_l(l0[2*j]),
-                .g_out(g1[j]), .e_out(e1[j]),   .l_out(l1[j])
+                .g_h(g0[2*j+1]), .e_h(e0[2*j+1]), .l_h(l0[2*j+1]),
+                .g_l(g0[2*j]), .e_l(e0[2*j]),.l_l(l0[2*j]),
+                .g_out(g1[j]), .e_out(e1[j]), .l_out(l1[j])
             );
         end
     endgenerate
@@ -60,11 +58,9 @@ module comparator_unit (
     generate
         for (k = 0; k < 2; k++) begin : gen_level2
             comp_merge_node m2 (
-                .g_h(g1[2*k+1]),
-                 .e_h(e1[2*k+1]), .l_h(l1[2*k+1]),
-                .g_l(g1[2*k]),   .e_l(e1[2*k]),   
-                .l_l(l1[2*k]),
-                .g_out(g2[k]),   .e_out(e2[k]),   .l_out(l2[k])
+                .g_h(g1[2*k+1]), .e_h(e1[2*k+1]), .l_h(l1[2*k+1]),
+                .g_l(g1[2*k]), .e_l(e1[2*k]),.l_l(l1[2*k]),
+                .g_out(g2[k]), .e_out(e2[k]), .l_out(l2[k])
             );
         end
     endgenerate
@@ -78,14 +74,13 @@ module comparator_unit (
 
     logic result;
     mux4to1 #(.WIDTH(1)) comp_mux (
-        .in0(is_gt),  
+        .in0(is_gt),
         .in1(is_lt),
         .in2(is_eq),
         .in3(~is_eq), // m = 11 NOT EQUAL
         .sel(m),
         .out(result)
     );
-
     assign z = {15'b0, result};
 
 endmodule

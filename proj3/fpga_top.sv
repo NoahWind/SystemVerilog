@@ -1,6 +1,6 @@
 module fpga_top ( // Test kode for FPGA, use physical inputs/outputs
     input  logic [11:0] SW,
-    output logic [15:0] LEDR
+    output logic [15:0] LED 
 );
 
     logic [3:0] x;
@@ -21,9 +21,8 @@ module fpga_top ( // Test kode for FPGA, use physical inputs/outputs
         .s(s),
         .z(z)
     );
-
-    assign LEDR[3:0]  = x;
-    assign LEDR[7:4]  = y;
-    assign LEDR[15:8] = z;
+    assign LED[3:0]  = x;
+    assign LED[7:4]  = y;
+    assign LED[15:8] = z;
 
 endmodule

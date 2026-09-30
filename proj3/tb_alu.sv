@@ -76,7 +76,6 @@ module tb_alu;
                     #10;
                     expected_z = get_expected(x, y, s, m);
                     test_count++;
-
                     assert (z == expected_z)
                     else $fatal(1, "FEL! S=%b, M=%b, x=%0d, y=%0d, excp=%0d, fick=%0d", 
                                 s, m, x, y, expected_z, z);

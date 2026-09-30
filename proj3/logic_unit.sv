@@ -1,7 +1,7 @@
 module logic_unit (
     input  logic [7:0] x,
     input  logic [7:0] y,
-    input  logic [1:0] m, // 00 AND, 01 OR, 10 NOT, 11 XOR
+    input  logic [1:0] m,// 00 AND, 01 OR, 10 NOT, 11 XOR
     output logic [15:0] z
 );
 
@@ -21,10 +21,9 @@ module logic_unit (
         .in1(or_res),
         .in2(not_res),
         .in3(xor_res),
-        .sel(m), // Styrsignal M
+        .sel(m), //Styrsignal M
         .out(mux_out_8bit)
     );
-
     assign z = {8'b0, mux_out_8bit};
 
 endmodule

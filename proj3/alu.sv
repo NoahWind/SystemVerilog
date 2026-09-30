@@ -5,7 +5,6 @@ module alu (
     input  logic [1:0]  s,
     output logic [15:0] z
 );
-
     logic [15:0] z_arith;
     logic [15:0] z_shift;
     logic [15:0] z_comp;
@@ -44,7 +43,7 @@ module alu (
         .in2(z_comp), // s = 10 Compare
         .in3(z_logic), // s = 11 Logic
         .sel(s), // Styrsignal S
-        .out(z) // ALU-utgång Z
+        .out(z)
     );
 
 endmodule
