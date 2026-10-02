@@ -8,7 +8,7 @@ module fpga_top ( // Test kode for FPGA, use physical inputs/outputs
     logic [1:0] m;
     logic [1:0] s;
     logic [7:0] z;
-
+    
     assign x = SW[3:0];
     assign y = SW[7:4];
     assign m = SW[9:8];

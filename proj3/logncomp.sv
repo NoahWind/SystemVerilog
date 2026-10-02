@@ -5,10 +5,11 @@ module comp_cell_1bit (
     output logic e, // Equal
     output logic l  // Less
 );  assign g = a & ~b;
-
     assign e = ~(a ^ b);
     assign l = ~a & b;
 endmodule
+
+
 
 module comp_merge_node (
     input logic g_h, e_h, l_h, // Högre signifikans
@@ -19,6 +20,10 @@ module comp_merge_node (
     assign e_out = e_h & e_l;
     assign l_out = l_h | (e_h & l_l);
 endmodule
+
+
+
+
 
 module comparator_unit (
     input  logic [7:0] x,

@@ -9,17 +9,16 @@ module arithmetic_unit (
     logic [15:0] sub_out;
     logic [15:0] mult_out;
     
-    assign add_out  = $signed(x) + $signed(y);
-    assign sub_out  = $signed(x) - $signed(y);
-
-    assign mult_out = $signed(x) * $signed(y);
+    assign add_out  = (x) + (y);
+    assign sub_out  = (x) - (y);
+    assign mult_out = (x) * (y);
 
     mux4to1 #(.WIDTH(16)) arith_mux (
-        .in0(add_out),// m = 00 ADD
-        .in1(sub_out),// m = 01 SUB
-        .in2(mult_out), // m = 10 MULTIPLY
+        .in0(add_out),
+        .in1(sub_out),
+        .in2(mult_out),
         .in3(16'b0), // m = 11 UNUSED HELT Onödig??
-        .sel(m), //Styrsignal M
+        .sel(m), 
         .out(z) // Utgång Z
     );
 

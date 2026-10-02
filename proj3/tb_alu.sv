@@ -25,9 +25,9 @@ module tb_alu;
         case (in_s)
             2'b00: begin
                 case (in_m)
-                    2'b00: return $signed(in_x) + $signed(in_y);
-                    2'b01: return $signed(in_x) - $signed(in_y);
-                    2'b10: return $signed(in_x) * $signed(in_y);// MULTIPLY
+                    2'b00: return (in_x) + (in_y);
+                    2'b01: return (in_x) - (in_y);
+                    2'b10: return (in_x) * (in_y);// MULTIPLY
                     2'b11: return 16'h0000;
                 endcase
             end
@@ -72,12 +72,14 @@ module tb_alu;
                     y = $urandom();
                     s = sel_s[1:0];
                     m = sel_m[1:0];
-                    #10;
                     expected_z = get_expected(x, y, s, m);
+                    #10;
+
                     test_count++;
                     assert (z == expected_z)
                     else $fatal(1, "FEL! S=%b, M=%b, x=%0d, y=%0d, excp=%0d, fick=%0d", 
                                 s, m, x, y, expected_z, z);
+                    
                 end
             end
         end

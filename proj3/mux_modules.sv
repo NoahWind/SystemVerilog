@@ -6,7 +6,6 @@ module mux2to1 #(
     input  logic sel,
     output logic [WIDTH-1:0] out
 );
-
     assign out = sel ? in1 : in0;
 
 endmodule
@@ -14,11 +13,11 @@ endmodule
 module mux4to1 #(
     parameter WIDTH = 16
 )(
-    input  logic [WIDTH-1:0] in0, // = 00
-    input  logic [WIDTH-1:0] in1, // = 01
-    input  logic [WIDTH-1:0] in2,// = 10
-    input  logic [WIDTH-1:0] in3, // = 11
-    input  logic [1:0] sel, // Sel
+    input  logic [WIDTH-1:0] in0,
+    input  logic [WIDTH-1:0] in1,
+    input  logic [WIDTH-1:0] in2,
+    input  logic [WIDTH-1:0] in3,
+    input  logic [1:0] sel,
     output logic [WIDTH-1:0] out
 );
 
