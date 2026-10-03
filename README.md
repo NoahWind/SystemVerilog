@@ -1,1 +1,1 @@
-Some random prodject based i QuestaSim and FPGA spartan 7
+Some random project based in QuestaSim and FPGA Spartan-7. The folder random_project contains some simple problem solutions and some testing.
