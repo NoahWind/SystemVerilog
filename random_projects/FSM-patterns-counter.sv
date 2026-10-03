@@ -23,7 +23,6 @@ always_ff @(posedge clk or negedge rst_n)begin
     else begin
         pres_state <= next_state;
     end
-    
 end
 
 always_comb begin
@@ -39,7 +38,7 @@ always_comb begin
             next_state = S_RESET;
         end
     end
-        S_1: begin
+    S_1: begin
         if (x == 1'b0)begin
             next_state = S_10;
         end
@@ -47,7 +46,7 @@ always_comb begin
             next_state = S_1;
         end
     end
-        S_10: begin
+    S_10: begin
         if (x == 1'b1)begin
             next_state = S_101;
         end
@@ -55,7 +54,7 @@ always_comb begin
             next_state = S_RESET;
         end
     end
-        S_101: begin
+    S_101: begin
         z = 1'b1;
         if (x == 1'b1)begin
             next_state = S_1;
