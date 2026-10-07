@@ -8,7 +8,7 @@ always_comb begin
     code = 2'b00;
     valid = 0;
     if (request[3]) begin
-        code = 2'b11;
+        code = 2'b11; 
             valid = 1;
         end
     else if (request[2]) begin
