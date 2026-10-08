@@ -14,12 +14,10 @@ module traffic_light_top (
     assign rstn = ~BTN[0];
 
 
-    clock_divider #(
-        .DIVISOR(100_000_000)
-    ) clk_div_inst (
-        .clk(CLK_100MHZ),
-        .rstn(rstn),
-        .divided_clk(slow_clk)
+    clock_divider clk_div_inst (
+    .clk(CLK_100MHZ),
+    .rstn(rstn),
+    .divided_clk(slow_clk)
     );
 
 
@@ -36,7 +34,6 @@ module traffic_light_top (
         .orange(orange),
         .green(green)
     );
-
 
     assign RGB0[0] = red;
     assign RGB0[1] = green;

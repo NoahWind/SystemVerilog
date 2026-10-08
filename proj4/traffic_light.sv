@@ -1,13 +1,12 @@
 module traffic_light #(
-    parameter integer RED_DELAY        = 5,
+    parameter integer RED_DELAY = 5,
     parameter integer RED_ORANGE_DELAY = 2,
-    parameter integer GREEN_DELAY      = 7,
-    parameter integer ORANGE_DELAY     = 2,
-    parameter integer COUNTER_WIDTH    = 8
+    parameter integer GREEN_DELAY  = 7,
+    parameter integer ORANGE_DELAY = 2,
+    parameter integer COUNTER_WIDTH = 8
 )(
     input  logic clk,
     input  logic rstn,
-
     output logic red,
     output logic orange,
     output logic green
@@ -72,9 +71,9 @@ module traffic_light #(
 
     always_comb begin
 
-        red    = 1'b0;
+        red = 1'b0;
         orange = 1'b0;
-        green  = 1'b0;
+        green = 1'b0;
 
         case (state)
 

@@ -1,7 +1,7 @@
 module digital_lock_top (
-    input  logic        CLK_100MHZ,
-    input  logic [1:0]  BTN,
-    input  logic [3:0]  SW,
+    input  logic CLK_100MHZ,
+    input  logic [1:0] BTN,
+    input  logic [3:0] SW,
 
     output logic        LED
 );
@@ -11,16 +11,12 @@ module digital_lock_top (
     logic divided_clk;
     logic debounced_valid_key;
     logic valid_key;
-
     logic lock_state;
 
 
     assign rstn = ~BTN[0];
 
-
-    clock_divider #(
-        .DIVISOR(1_000_000)
-    ) clk_div_inst (
+    clock_divider clk_div_inst (
         .clk(CLK_100MHZ),
         .rstn(rstn),
         .divided_clk(divided_clk)
