@@ -1,20 +1,28 @@
-module clock_divider (
+module clock_divider #(
+    parameter integer DIVISOR = 100_000_0
+)(
     input  logic clk,
     input  logic rstn,
+
     output logic divided_clk
 );
 
-    logic [18:0] counter;
+    localparam integer COUNTER_WIDTH = $clog2(DIVISOR);
+
+    logic [COUNTER_WIDTH-1:0] counter;
+
     always_ff @(posedge clk or negedge rstn) begin
-        
+
         if (!rstn) begin
-            counter     <= 19'd0;
+            counter <= '0;
             divided_clk <= 1'b0;
         end
 
         else begin
-            if (counter == 19'd499999) begin // Halv period
-                counter <= 19'd0;
+
+            if (counter == (DIVISOR / 2) - 1) begin
+
+                counter <= '0;
                 divided_clk <= ~divided_clk;
             end
             else begin

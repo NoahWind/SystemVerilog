@@ -28,7 +28,7 @@ module traffic_light #(
         if (!rstn) begin
             state   <= RED_STATE;
             counter <= RED_DELAY - 1;
-        end
+        end 
 
         else begin
             if (counter == 0) begin
