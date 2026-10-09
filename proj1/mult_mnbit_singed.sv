@@ -1,5 +1,5 @@
 // ------------------------------------------------------------
-// 1. Hjælpemoduler (Strukturelle)
+// 1. Hjï¿½lpemoduler (Strukturelle)
 // ------------------------------------------------------------
 module half_adder (
     input  logic a, b,
@@ -23,21 +23,16 @@ module full_adder (
     or  (cout, aandb, cin_and_axorb);
 endmodule
 
-// ------------------------------------------------------------
-// 2. Baugh-Wooley Multiplikator med genvar (N x M)
-// ------------------------------------------------------------
 module mult_mnbit_signed #(
     parameter M = 4, // Bredde af a (X)
     parameter N = 4  // Bredde af b (Y)
 )(
-    input  logic [M-1:0]   a,       // X-indgang[cite: 7]
-    input  logic [N-1:0]   b,       // Y-indgang[cite: 7]
-    output logic [M+N-1:0] product  // Z-udgang[cite: 7]
+    input  logic [M-1:0]   a,
+    input  logic [N-1:0]   b,
+    output logic [M+N-1:0] product 
 );
-    // Grid til partialprodukter
     logic [N-1:0][M-1:0] pp;
 
-    // Generér partialprodukter (NAND på MSB-kantelementer, AND ellers)[cite: 7]
     genvar i, j;
     generate
         for (j = 0; j < N; j++) begin : gen_pp_rows
@@ -51,20 +46,15 @@ module mult_mnbit_signed #(
         end
     endgenerate
 
-    // Intern ledningsnet til sum og carry
     logic [N-2:0][M-1:0] sum_wire;
     logic [N-2:0][M-1:0] carry_wire;
 
-    // Z0 udtages direkte fra pp[0][0][cite: 7]
     buf (product[0], pp[0][0]);
 
-    // ------------------------------------------------------------
-    // Række 1 (J = 0): Første række af adderere (HA + FA + FA_top med 1'b1)[cite: 7]
-    // ------------------------------------------------------------
     generate
         for (i = 0; i < M; i++) begin : gen_row0
             if (i == 0) begin : gen_ha
-                // HA til højre giver product[1] (Z1)[cite: 7]
+                // HA til hï¿½jre giver product[1] (Z1)
                 half_adder ha (
                     .a(pp[0][1]),
                     .b(pp[1][0]),
@@ -80,7 +70,6 @@ module mult_mnbit_signed #(
                     .cout(carry_wire[0][i])
                 );
             end else begin : gen_fa_top
-                // Øverste venstre FA tager fast 1'b1 på .a indgangen[cite: 7]
                 full_adder fa (
                     .a(1'b1),
                     .b(pp[1][M-1]),
@@ -92,9 +81,6 @@ module mult_mnbit_signed #(
         end
     endgenerate
 
-    // ------------------------------------------------------------
-    // Midterste rækker (j fra 1 til N-3)[cite: 7]
-    // ------------------------------------------------------------
     generate
         for (j = 1; j < N-2; j++) begin : gen_mid_rows
             for (i = 0; i < M; i++) begin : gen_cols
@@ -126,16 +112,13 @@ module mult_mnbit_signed #(
         end
     endgenerate
 
-    // ------------------------------------------------------------
-    // Sidste række af partialprodukter (j = N-2)[cite: 7]
-    // ------------------------------------------------------------
     generate
         for (i = 0; i < M; i++) begin : gen_last_pp_row
             if (i == 0) begin : gen_ha
                 half_adder ha (
                     .a(sum_wire[N-3][1]),
                     .b(pp[N-1][0]),
-                    .sum(product[N-1]), // Z3 i 4x4-tilfælde[cite: 7]
+                    .sum(product[N-1]), 
                     .cout(carry_wire[N-2][0])
                 );
             end else if (i < M-1) begin : gen_fa
@@ -143,7 +126,7 @@ module mult_mnbit_signed #(
                     .a(sum_wire[N-3][i+1]),
                     .b(pp[N-1][i]),
                     .cin(carry_wire[N-2][i-1]),
-                    .sum(product[N-1+i]), // Z4, Z5[cite: 7]
+                    .sum(product[N-1+i]), 
                     .cout(carry_wire[N-2][i])
                 );
             end else begin : gen_fa_top
@@ -151,21 +134,18 @@ module mult_mnbit_signed #(
                     .a(carry_wire[N-3][M-1]),
                     .b(pp[N-1][M-1]),
                     .cin(carry_wire[N-2][M-2]),
-                    .sum(product[M+N-2]), // Z6[cite: 7]
+                    .sum(product[M+N-2]), // Z6
                     .cout(carry_wire[N-2][M-1])
                 );
             end
         end
     endgenerate
 
-    // ------------------------------------------------------------
-    // Afsluttende korrektions-HA nederst til venstre[cite: 7]
-    // ------------------------------------------------------------
     half_adder ha_final (
         .a(1'b1),
         .b(carry_wire[N-2][M-1]),
-        .sum(product[M+N-1]), // Z7[cite: 7]
-        .cout()               // Unused carry-out
+        .sum(product[M+N-1]),
+        .cout()  
     );
 
 endmodule

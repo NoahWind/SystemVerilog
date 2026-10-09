@@ -7,7 +7,6 @@ module digital_lock_top (
 );
 
     logic rstn;
-
     logic divided_clk;
     logic debounced_valid_key;
     logic valid_key;
@@ -30,7 +29,6 @@ module digital_lock_top (
         .debounced_valid_key(debounced_valid_key)
     );
 
-
     key_press_detector key_detector_inst (
         .clk(CLK_100MHZ),
         .rstn(rstn),
@@ -38,9 +36,7 @@ module digital_lock_top (
         .valid_key(valid_key)
     );
 
-
     digital_lock #(
-        .DEFAULT_PIN(16'h1234)
     ) lock_inst (
         .clk(CLK_100MHZ),
         .rstn(rstn),
@@ -48,7 +44,6 @@ module digital_lock_top (
         .valid_key(valid_key),
         .state(lock_state)
     );
-
 
     assign LED = lock_state;
 

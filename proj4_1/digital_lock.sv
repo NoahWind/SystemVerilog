@@ -1,4 +1,5 @@
-module digital_lock (
+module digital_lock #(parameter logic [15:0] DEFAULT_PIN = 16'h1234
+)(
     input  logic clk,
     input  logic rstn,
     input  logic [3:0] key,
@@ -14,16 +15,15 @@ module digital_lock (
     } state_t;
 
     state_t current_state;
-
     logic [15:0] password;
     logic [15:0] entered_pin;
-    logic [2:0]  digit_count;
+    logic [2:0] digit_count;
 
     always_ff @(posedge clk or negedge rstn) begin
 
         if (!rstn) begin
             current_state <= UNLOCKED;
-            password <= 16'h6969;
+            password <= 16'h1234;
             entered_pin <= 16'h0000;
             digit_count <= 3'd0;
         end

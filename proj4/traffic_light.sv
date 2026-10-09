@@ -20,6 +20,7 @@ module traffic_light #(
     } state_t;
 
     state_t state;
+    state_t next_state;
 
     logic [COUNTER_WIDTH-1:0] counter;
 
@@ -32,31 +33,26 @@ module traffic_light #(
 
         else begin
             if (counter == 0) begin
-
+                state <= next_state;
                 case (state)
 
                     RED_STATE: begin
-                        state   <= RED_ORANGE_STATE;
                         counter <= RED_ORANGE_DELAY - 1;
                     end
 
                     RED_ORANGE_STATE: begin
-                        state   <= GREEN_STATE;
                         counter <= GREEN_DELAY - 1;
                     end
 
                     GREEN_STATE: begin
-                        state   <= ORANGE_STATE;
                         counter <= ORANGE_DELAY - 1;
                     end
 
                     ORANGE_STATE: begin
-                        state   <= RED_STATE;
                         counter <= RED_DELAY - 1;
                     end
 
                     default: begin
-                        state   <= RED_STATE;
                         counter <= RED_DELAY - 1;
                     end
 
@@ -74,30 +70,33 @@ module traffic_light #(
         red = 1'b0;
         orange = 1'b0;
         green = 1'b0;
-
+        next_state = RED_STATE;
         case (state)
 
             RED_STATE: begin
                 red = 1'b1;
+                next_state = RED_ORANGE_STATE;
             end
 
             RED_ORANGE_STATE: begin
-                red    = 1'b1;
+                red = 1'b1;
                 orange = 1'b1;
+                next_state = GREEN_STATE;
             end
 
             GREEN_STATE: begin
                 green = 1'b1;
+                next_state = ORANGE_STATE;
             end
 
             ORANGE_STATE: begin
                 orange = 1'b1;
+                next_state = RED_STATE;
             end
 
             default: begin
                 red = 1'b1;
             end
-
         endcase
     end
 

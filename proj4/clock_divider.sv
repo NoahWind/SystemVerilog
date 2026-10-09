@@ -3,13 +3,11 @@ module clock_divider #(
 )(
     input  logic clk,
     input  logic rstn,
-
     output logic divided_clk
 );
 
     localparam integer COUNTER_WIDTH = $clog2(DIVISOR);
-
-    logic [COUNTER_WIDTH-1:0] counter;
+    logic [COUNTER_WIDTH:0] counter;
 
     always_ff @(posedge clk or negedge rstn) begin
 
