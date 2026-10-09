@@ -1,5 +1,3 @@
-
-// Grundläggande 2-till-1 Multiplexer
 module mux21 (
     input  logic a,
     input  logic b,
@@ -9,7 +7,7 @@ module mux21 (
     assign y = s ? b : a;
 endmodule
 
-// Full Adder uppbyggd helt med 2:1 MUX:ar
+
 module fa_mux (
     input  logic a,
     input  logic b,
@@ -20,7 +18,7 @@ module fa_mux (
     logic a_xor_b;
     logic not_cin;
 
-    // 1. Skapa A ^ B med en MUX
+    
     mux21 mux_xor (
         .a(b),
         .b(~b),
@@ -28,7 +26,7 @@ module fa_mux (
         .y(a_xor_b)
     );
 
-    // 2. Skapa ~Cin med en MUX
+    
     mux21 mux_inv (
         .a(1'b1),
         .b(1'b0),
@@ -36,7 +34,7 @@ module fa_mux (
         .y(not_cin)
     );
 
-    // 3. Generera Sum med en MUX: (A ^ B) ? ~Cin : Cin
+    
     mux21 mux_sum (
         .a(cin),
         .b(not_cin),
@@ -44,7 +42,7 @@ module fa_mux (
         .y(sum)
     );
 
-    // 4. Generera Cout med en MUX: (A ^ B) ? Cin : B
+    
     mux21 mux_cout (
         .a(b),
         .b(cin),
@@ -54,7 +52,7 @@ module fa_mux (
 
 endmodule
 
-// Parametrisk N-bitars RCA uppbyggd av fa_mux
+
 module rca_nbit #(
     parameter N = 4
 )(

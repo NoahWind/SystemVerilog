@@ -1,6 +1,6 @@
-// ------------------------------------------------------------
-// 1. Hj�lpemoduler (Strukturelle)
-// ------------------------------------------------------------
+
+
+
 module half_adder (
     input  logic a, b,
     output logic sum, cout
@@ -24,8 +24,8 @@ module full_adder (
 endmodule
 
 module mult_mnbit_signed #(
-    parameter M = 4, // Bredde af a (X)
-    parameter N = 4  // Bredde af b (Y)
+    parameter M = 4, 
+    parameter N = 4  
 )(
     input  logic [M-1:0]   a,
     input  logic [N-1:0]   b,
@@ -54,7 +54,7 @@ module mult_mnbit_signed #(
     generate
         for (i = 0; i < M; i++) begin : gen_row0
             if (i == 0) begin : gen_ha
-                // HA til h�jre giver product[1] (Z1)
+                
                 half_adder ha (
                     .a(pp[0][1]),
                     .b(pp[1][0]),
@@ -134,7 +134,7 @@ module mult_mnbit_signed #(
                     .a(carry_wire[N-3][M-1]),
                     .b(pp[N-1][M-1]),
                     .cin(carry_wire[N-2][M-2]),
-                    .sum(product[M+N-2]), // Z6
+                    .sum(product[M+N-2]), 
                     .cout(carry_wire[N-2][M-1])
                 );
             end

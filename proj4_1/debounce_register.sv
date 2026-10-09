@@ -4,7 +4,7 @@ module debounce_register (
     input  logic valid_key_BTN,
     output logic debounced_valid_key
 );
- // doesnt flip so often (100Hz) so we dont need to change mutch
+ 
     always_ff @(posedge divided_clk or negedge rstn) begin
 
         if (!rstn) begin

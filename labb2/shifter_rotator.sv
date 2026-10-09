@@ -48,7 +48,7 @@ module shifter_rotator (
     output logic [3:0] y
 );
 
-    mux41 m0 ( // either value to left or right or 0
+    mux41 m0 ( 
         .d0(1'b0),
         .d1(x[1]),
         .d2(x[3]),
@@ -57,7 +57,7 @@ module shifter_rotator (
         .y(y[0])
     );
 
-    mux41 m1 ( // either value to left or right
+    mux41 m1 ( 
         .d0(x[0]),
         .d1(x[2]),
         .d2(x[0]),
@@ -66,7 +66,7 @@ module shifter_rotator (
         .y(y[1])
     );
 
-    mux41 m2 ( // either value to left or right
+    mux41 m2 ( 
         .d0(x[1]),
         .d1(x[3]),
         .d2(x[1]),
@@ -75,7 +75,7 @@ module shifter_rotator (
         .y(y[2])
     );
 
-    mux41_using_mux21 m3 ( // either value to left or right or 0
+    mux41_using_mux21 m3 ( 
         .d0(x[2]),
         .d1(1'b0),
         .d2(x[2]),

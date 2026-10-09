@@ -1,4 +1,4 @@
-module fpga_top ( // Test kode for FPGA, use physical inputs/outputs
+module fpga_top ( 
     input  logic [11:0] SW,
     output logic [15:0] LED 
 );

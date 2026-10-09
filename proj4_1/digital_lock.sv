@@ -46,7 +46,7 @@ module digital_lock #(parameter logic [15:0] DEFAULT_PIN = 16'h1234
                 end
 
                 LOCKED: begin
-                    entered_pin <= {12'h000, key}; // Store first entered PIN digit
+                    entered_pin <= {12'h000, key}; 
                     digit_count <= 3'd1;
                     current_state <= ENTER_PIN;
                 end
@@ -54,7 +54,7 @@ module digital_lock #(parameter logic [15:0] DEFAULT_PIN = 16'h1234
                 ENTER_PIN: begin
 
                     if (digit_count < 4) begin
-                        entered_pin <= {entered_pin[11:0], key}; // shift shift shift
+                        entered_pin <= {entered_pin[11:0], key}; 
 
                         digit_count <= digit_count + 1'b1;
                     end

@@ -12,7 +12,7 @@ module tb_mult_add;
     );
 
     initial begin
-        // Slumpmässiga
+        
         for (int i = 0; i < 100:00; i++) begin
             a0 = $urandom_range(0, 15);
             a1 = $urandom_range(0, 15);

@@ -1,4 +1,4 @@
-module door_controller ( // testing FSM
+module door_controller ( 
     input  logic clk,
     input  logic rst_n,
     input  logic request,

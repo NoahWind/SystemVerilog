@@ -12,12 +12,12 @@ module mult_mnbit #(
     generate
         for (i = 0; i < M; i++) begin : gen_pp_row
             for (j = 0; j < N; j++) begin : gen_pp_col
-                and (pp[i][j], a[i], b[j]); // a = i, b = j
+                and (pp[i][j], a[i], b[j]); 
             end
         end
     endgenerate
 
-    assign product[0] = pp[0][0]; // First is first
+    assign product[0] = pp[0][0]; 
 
     logic [M-1:0][N-1:0] acc_sum;
     logic [M-1:0] acc_cout;

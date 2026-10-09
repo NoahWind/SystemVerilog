@@ -1,4 +1,4 @@
-module compare_ge ( //X >= Y → ge = 1, X <  Y → ge = 0
+module compare_ge ( 
     input  logic [3:0] X,
     input  logic [3:0] Y,
     output logic ge

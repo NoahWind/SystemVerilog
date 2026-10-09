@@ -1,9 +1,9 @@
 module comp_cell_1bit (
     input  logic a,
     input  logic b,
-    output logic g, // Greater
-    output logic e, // Equal
-    output logic l  // Less
+    output logic g, 
+    output logic e, 
+    output logic l  
 );  assign g = a & ~b;
     assign e = ~(a ^ b);
     assign l = ~a & b;
@@ -12,8 +12,8 @@ endmodule
 
 
 module comp_merge_node (
-    input logic g_h, e_h, l_h, // Högre signifikans
-    input  logic g_l, e_l, l_l, // Lägre signifikans
+    input logic g_h, e_h, l_h, 
+    input  logic g_l, e_l, l_l, 
     output logic g_out, e_out, l_out
 );
     assign g_out = g_h | (e_h & g_l);
@@ -82,7 +82,7 @@ module comparator_unit (
         .in0(is_gt),
         .in1(is_lt),
         .in2(is_eq),
-        .in3(~is_eq), // m = 11 NOT EQUAL
+        .in3(~is_eq), 
         .sel(m),
         .out(result)
     );

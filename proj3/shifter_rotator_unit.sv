@@ -1,7 +1,7 @@
 module shifter_rotator_unit (
     input  logic [7:0]  x,
     input  logic [7:0]  y,
-    input  logic [1:0]  m, // 00 ROTATE RIGHT, 01 ROTATE LEFT, 10 SHIFT RIGHT, 11 SHIFT LEFT
+    input  logic [1:0]  m, 
     output logic [15:0] z
 );
     logic [7:0] rot_right_res;

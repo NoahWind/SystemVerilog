@@ -1,7 +1,7 @@
 module arithmetic_unit (
     input  logic [7:0] x,
     input  logic [7:0] y,
-    input  logic [1:0] m, // 00 ADD, 01 SUB, 10 MULTIPLY, 11 UNUSED
+    input  logic [1:0] m, 
     output logic [15:0] z
 );
 
@@ -17,9 +17,9 @@ module arithmetic_unit (
         .in0(add_out),
         .in1(sub_out),
         .in2(mult_out),
-        .in3(16'b0), // m = 11 UNUSED HELT Onödig??
+        .in3(16'b0), 
         .sel(m), 
-        .out(z) // Utgång Z
+        .out(z) 
     );
 
 endmodule

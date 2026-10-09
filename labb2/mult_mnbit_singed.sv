@@ -66,6 +66,6 @@ module mult_mnbit_signed #(
     endgenerate
 
     assign product[M+N-2 : N] = sum_wire[N-2][M-1:1]; 
-    assign product[M+N-1] = ~cout_wire[N-2]; // HA
+    assign product[M+N-1] = ~cout_wire[N-2]; 
 
 endmodule

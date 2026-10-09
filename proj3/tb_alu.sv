@@ -27,7 +27,7 @@ module tb_alu;
                 case (in_m)
                     2'b00: return (in_x) + (in_y);
                     2'b01: return (in_x) - (in_y);
-                    2'b10: return (in_x) * (in_y);// MULTIPLY
+                    2'b10: return (in_x) * (in_y);
                     2'b11: return 16'h0000;
                 endcase
             end
@@ -41,7 +41,7 @@ module tb_alu;
                 endcase
             end
 
-            // 3. COMPARE (S = 10)
+            
             2'b10: begin
                 case (in_m)
                     2'b00: return {15'b0, (in_x > in_y)};
@@ -51,7 +51,7 @@ module tb_alu;
                 endcase
             end
 
-            // 4. LOGIC (S = 11)
+            
             2'b11: begin
                 case (in_m)
                     2'b00: return {8'b0, in_x & in_y};
